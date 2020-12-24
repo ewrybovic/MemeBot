@@ -79,7 +79,7 @@ async def loop():
     try:
         # Get the channel that we are gonna send the meme to
         submission = get_meme()
-        await channel.send(f"@everyone\n{submission.title}\n{submission.url}")
+        await channel.send(f"{submission.title}\n{submission.url}")
     except:
         await channel.send(f"Error getting meme in task")
 
