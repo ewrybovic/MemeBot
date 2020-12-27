@@ -64,11 +64,14 @@ def get_meme():
 
         currentNum += 1
 
+def format_post(submission):
+    return f'{submission.title} [{submission.subreddit}]\n{submission.url}'
+
 # Function that executes with the !meme
 @bot.command(name="meme", help="Gets a meme from a random subreddit")
 async def meme_command(ctx):
     submission = get_meme()
-    await ctx.send(f'{submission.title} [{submission.subreddit}]\n{submission.url}')
+    await ctx.send(format_post(submission))
 
 # Error handling for the get_meme funciton
 @meme_command.error
@@ -83,7 +86,7 @@ async def loop():
     try:
         # Get the channel that we are gonna send the meme to
         submission = get_meme()
-        await channel.send(f"{submission.title}\n{submission.url}")
+        await channel.send(format_post(submission))
     except:
         await channel.send(f"Error getting meme in task")
 
