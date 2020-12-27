@@ -41,11 +41,15 @@ def get_meme():
     currentNum = 0
     submissions = []
 
-    # Bot can get from either top(1) or hot(0)
-    if random.randint(0,1) ==0:
+    filter = random.randint(0,2)
+
+    # Get posts from Hot(0), top of day(1) or top of month(2)
+    if filter == 0:
         submissions = reddit.subreddit(subreddit).hot(limit=10)
-    else:
+    elif filter == 1:
         submissions = reddit.subreddit(subreddit).top('day', limit=10)
+    else:
+        submissions = reddit.subreddit(subreddit).top('month', limit=10)
 
     # Cant index the submissions since it is a generator so loop through it until we hit the post number
     for submission in submissions:
