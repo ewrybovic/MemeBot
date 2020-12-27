@@ -52,7 +52,7 @@ def get_meme():
         if postNum == currentNum:
 
             # Check if the post has selftext, if so it is not a pic/vid post
-            if not submission.selftext:
+            if not submission.selftext and "v.redd.it" not in submission.url and "youtube.com" in submission.url:
                 return submission
             # Get a new meme by recursion
             else:
@@ -64,7 +64,7 @@ def get_meme():
 @bot.command(name="meme", help="Gets a meme from a random subreddit")
 async def meme_command(ctx):
     submission = get_meme()
-    await ctx.send(f'{submission.title}\n{submission.url}')
+    await ctx.send(f'{submission.title} [{submission.subreddit}]\n{submission.url}')
 
 # Error handling for the get_meme funciton
 @meme_command.error
