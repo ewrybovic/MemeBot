@@ -4,6 +4,8 @@ import random
 import time
 from dotenv import load_dotenv
 
+import SmartPost
+
 # Reddit python wrapper
 import praw
 
@@ -18,6 +20,8 @@ CHANNEL = os.getenv("DISCORD_CHANNEL_ID")
 R_ID= os.getenv('REDDIT_ID')
 R_SECRET = os.getenv('REDDIT_SECRET')
 R_USER = os.getenv('REDDIT_USER')
+
+smart_post = SmartPost.SmartPost()
 
 # Load the MemeWorthy Subreddits from CSV
 subreddits = []
@@ -56,7 +60,7 @@ def get_meme():
         if postNum == currentNum:
 
             # Check if the post has selftext, if so it is not a pic/vid post
-            if not submission.selftext and "v.redd.it" not in submission.url and "youtube.com" not in submission.url:
+            if not submission.selftext and smart_post.CheckValidPost:
                 return submission
             # Get a new meme by recursion
             else:
