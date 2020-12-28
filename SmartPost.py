@@ -4,7 +4,7 @@ import csv
 class SmartPost:
     def __init__(self):
         self.previous_posts_file = 'previous_posts.csv'
-        self.previous_posts_deque = deque(maxlen = 5)
+        self.previous_posts_deque = deque(maxlen = 15)
         self.filters = ['v.redd.it', 'youtube.com']
 
         # Read from the file
