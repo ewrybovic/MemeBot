@@ -60,7 +60,7 @@ def get_meme():
         if postNum == currentNum:
 
             # Check if the post has selftext, if so it is not a pic/vid post
-            if not submission.selftext and smart_post.CheckValidPost:
+            if not submission.selftext and smart_post.CheckValidPost(submission.url):
                 return submission
             # Get a new meme by recursion
             else:
