@@ -1,2 +1,5 @@
 # env files
 *.env
+
+# Pychache folder
+__pycache__
